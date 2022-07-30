@@ -15,7 +15,6 @@ export class AuthService {
     pass: string,
   ): Promise<UserAuthInfo | null> {
     const user = await this.usersService.findOneByEmail(username);
-    console.log(username, user);
     if (user == null || user.salt == null || user.password == null) {
       return null;
     }
@@ -23,15 +22,15 @@ export class AuthService {
     if (hashed_ps !== user.password) {
       return null;
     }
-    const { password, ...result } = user;
+    const userAuthInfo: UserAuthInfo = { id: user.id };
 
-    return result;
+    return userAuthInfo;
   }
 
   // Password validation handled by Auth Guard
   // Function generates jwt token and attaches username to it...
-  async login(user: string) {
-    const payload = { username: user, userId: 1 };
+  async login(userId: string) {
+    const payload = { userId };
     return {
       access_token: this.jwtService.sign(payload),
     };

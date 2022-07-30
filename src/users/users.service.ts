@@ -10,6 +10,7 @@ export class UsersService {
     const { password, email, birthday, firstname, lastname } = createUserDto;
     const salt = await generateSalt();
     const hashed_ps = await hashPassword(password, salt);
+
     const createdUser = await this.prisma.user.create({
       data: {
         email,
@@ -48,7 +49,7 @@ export class UsersService {
   removeByEmail(email: string) {
     return this.prisma.user.delete({ where: { email } });
   }
-}
-function data(data: any, arg1: {}) {
-  throw new Error('Function not implemented.');
+  removeAll() {
+    return this.prisma.user.deleteMany({});
+  }
 }
