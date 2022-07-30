@@ -1,12 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import { createHmac, randomBytes } from 'crypto';
+import * as bcrypt from 'bcrypt';
 
-export const hashPassword = (password: string, salt: string) => {
-  const hash = createHmac('sha512', salt);
-  hash.update(password);
-  return hash.digest('hex');
+export const hashPassword = async (password: string, salt: string) => {
+  return await bcrypt.hash(password, salt);
 };
 
-export const generateSalt = () => {
-  return randomBytes(6).toString('hex').slice(0, 12);
+export const generateSalt = async () => {
+  return await bcrypt.genSalt();
 };

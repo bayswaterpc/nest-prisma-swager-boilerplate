@@ -8,8 +8,8 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
   async create(createUserDto: CreateUserDto) {
     const { password, email, birthday, firstname, lastname } = createUserDto;
-    const salt = generateSalt();
-    const hashed_ps = hashPassword(password, salt);
+    const salt = await generateSalt();
+    const hashed_ps = await hashPassword(password, salt);
     const createdUser = await this.prisma.user.create({
       data: {
         email,
