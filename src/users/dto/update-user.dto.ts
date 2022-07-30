@@ -1,8 +1,8 @@
-import { IsNotEmpty, IsDate } from 'class-validator';
+import { IsNotEmpty, IsDateString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateUserDto {
-  @IsDate()
+  @IsDateString()
   @IsNotEmpty()
   birthday: Date;
 
