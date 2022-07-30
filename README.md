@@ -13,3 +13,10 @@ Started from this excellent [prisma blog](https://www.prisma.io/blog/nestjs-pris
 4. Apply database migrations: `npx prisma migrate dev`
 5. Start the project: `npm run start:dev`
 6. Access the project at http://localhost:3000/api
+
+### Creating A New Model and Module
+
+1. Add your model in `schema.prisma`
+2. Apply migration: `npx prisma migrate dev --name "{Your Migration Name}"`
+3. To seed with any new data make modifications to `prisma/seed.ts` and run `npx prisma db seed`
+4. Generate nest CRUD with `npx nest generate resource`

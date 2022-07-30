@@ -1,24 +1,48 @@
 import { Injectable } from '@nestjs/common';
-
-// This should be a real class/interface representing a user entity
-export type User = any;
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'john',
-      password: 'changeme',
-    },
-    {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
-    },
-  ];
-
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  constructor(private prisma: PrismaService) {}
+  async create(createUserDto: CreateUserDto) {
+    const { password, email, birthday, firstname, lastname } = createUserDto;
+    const hashed_ps = password;
+    const salt = password;
+    const createdUser = await this.prisma.user.create({
+      data: {
+        email,
+        birthday,
+        firstname,
+        lastname,
+        password: hashed_ps,
+        salt,
+      },
+    });
+    return createdUser;
   }
+
+  findAll() {
+    return `This action returns all users`;
+  }
+
+  findOne(id: string) {
+    return this.prisma.user.findUnique({ where: { id } });
+  }
+
+  findOneByEmail(email: string) {
+    return this.prisma.user.findUnique({ where: { email } });
+  }
+
+  update(id: number, updateUserDto: UpdateUserDto) {
+    return `This action updates a #${id} user`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} user`;
+  }
+}
+function data(data: any, arg1: {}) {
+  throw new Error('Function not implemented.');
 }
