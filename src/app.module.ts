@@ -6,9 +6,17 @@ import { ArticlesModule } from './articles/articles.module';
 import { TodosModule } from './todos/todos.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { TinyUrlModule } from './tiny-url/tiny-url.module';
 
 @Module({
-  imports: [PrismaModule, ArticlesModule, TodosModule, AuthModule, UsersModule],
+  imports: [
+    PrismaModule,
+    ArticlesModule,
+    TodosModule,
+    AuthModule,
+    UsersModule,
+    TinyUrlModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

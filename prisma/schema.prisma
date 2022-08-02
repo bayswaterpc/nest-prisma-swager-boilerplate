@@ -40,3 +40,12 @@ model User {
   firstname String?
   lastname  String?
 }
+
+
+model ShortenedUrlLink {
+  minifiedUrl String   @id //todo fix with migration change var name
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  attachedUserId String
+  targetUrl String
+}

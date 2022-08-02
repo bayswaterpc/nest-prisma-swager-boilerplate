@@ -43,6 +43,15 @@ async function main() {
     },
   });
   console.log({ todo1, todo2 });
+
+  const tinyUrl = await prisma.shortenedUrlLink.create({
+    data: {
+      minifiedUrl: 'imSoSmall',
+      attachedUserId: 'bayswaterpc',
+      targetUrl: 'www.bayswaterpc.com',
+    },
+  });
+  console.log(tinyUrl);
 }
 
 // execute the main function
