@@ -1,6 +1,7 @@
 ## Blog-Backend-REST-API-NestJS-Prisma
 
 A simple backend REST API for a blog built using NestJS, Prisma, PostgreSQL and Swagger.
+
 Started from this excellent [prisma blog](https://www.prisma.io/blog/nestjs-prisma-rest-api-7D056s1BmOL0), & [repo](https://github.com/TasinIshmam/blog-backend-rest-api-nestjs-prisma). Big kudos to [TasinIshmam](https://github.com/TasinIshmam).
 
 ### Installation
@@ -20,3 +21,7 @@ Started from this excellent [prisma blog](https://www.prisma.io/blog/nestjs-pris
 2. Apply migration: `npx prisma migrate dev --name "{Your Migration Name}"`
 3. To seed with any new data make modifications to `prisma/seed.ts` and run `npx prisma db seed`
 4. Generate nest CRUD with `npx nest generate resource`
+5. Implement your CRUD
+   - Update imports `yourResource.module.ts`
+   - Update api routes `yourResource.controller.ts`
+   - Update prisma fetching `yourResource.service.ts`
